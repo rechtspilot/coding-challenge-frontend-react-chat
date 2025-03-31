@@ -1,33 +1,12 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { v4 as uuidv4 } from 'uuid';
+import { GetMessagesParams, MessageData, NewSessionResponse, SendMessagePayload } from '../../shared/types';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
-
-type NewSessionResponse ={
-    sessionId: string;
-}
-
-type SendMessagePayload = {
-    sessionId: string;
-    message: {
-        id: string;
-        text: string;
-    };
-}
-
-type GetMessagesParams = {
-    sessionId: string;
-    
-}
-type MessageData = {
-    id: string;
-    kind: 'robot' | 'user';
-    text: string;
-}
 
 app.use(express.json());
 
