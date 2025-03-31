@@ -12,7 +12,7 @@ Build a Chat Application UI where users can:
 - [ ] Resend messages that failed to send.
 - [ ] View the conversation history for the current session (messages sent/received during the session).
 
-You will interact with a **mocked backend** simulation layer (which you will likely need to implement as part of the frontend codebase) that introduces deliberate failures and delays.
+You will interact with a **mocked backend** simulation layer that introduces deliberate failures and delays.
 
 ## Prerequisites
 *   **Duration:** We estimate this task should take approximately 3-5 hours. Please provide an estimation of the total time you spent on this challenge if it is not evident from your commit history.
@@ -96,6 +96,7 @@ You will interact with a **mocked backend** simulation layer (which you will lik
   }
 }
 ```
+*No Response:* The Promise returned by POST /messages simply never settles in this case.
 
 #### `GET` /messages/:sessionId
 *Input Payload:*
@@ -118,7 +119,9 @@ You will interact with a **mocked backend** simulation layer (which you will lik
 ]
 ```
 
-*No Response:* The Promise returned by `sendMessage` simply never settles in this case.
+### Error scenarios
+Check the backend mock code for further errors.
+
 
 ## Suggested Features (Optional)
 If time allows, consider adding:

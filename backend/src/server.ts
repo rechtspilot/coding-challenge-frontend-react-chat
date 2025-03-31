@@ -1,6 +1,5 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import { log } from "console";
 import { v4 as uuidv4 } from 'uuid';
 
 dotenv.config();
@@ -16,14 +15,8 @@ type SendMessagePayload = {
     sessionId: string;
     message: {
         id: string;
-        kind: 'robot' | 'user'; 
         text: string;
     };
-}
-
-type SendMessageResponse = {
-    success: boolean;
-    error?: string;
 }
 
 type GetMessagesParams = {
@@ -55,7 +48,7 @@ app.get('/sessions', (req: Request, res: Response<NewSessionResponse[]>) => {
     res.status(200).json(sessionsArray);
 });
 
-app.post('/messages', (req: Request, res: Response) => {
+app.post('/messages', (req: Request<{}, any, SendMessagePayload>, res: Response<string>) => {
     const { sessionId, message } = req.body;
 
     console.log(`[/messages] Received message for session ${sessionId}: "${message.text}" (frontendId: ${message.id})`);
@@ -125,7 +118,7 @@ app.post('/messages', (req: Request, res: Response) => {
     }
 });
 
-app.get('/messages/:sessionId', (req: Request<GetMessagesParams>, res: Response) => {
+app.get('/messages/:sessionId', (req: Request<GetMessagesParams>, res: Response<MessageData[] | string>) => {
     const { sessionId } = req.params;
     console.log(`[/messages/${sessionId}] Fetching messages for session ${sessionId}`);
 
