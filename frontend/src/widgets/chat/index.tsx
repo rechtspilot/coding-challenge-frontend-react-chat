@@ -14,6 +14,7 @@ import { MessageList } from "../../components/message-list";
 import { updateMessage } from "./utils/update-message";
 import { addMessages } from "./utils/add-messages";
 import { Loader } from "../../components/loader";
+import { ErrorReport } from "../../components/error-report";
 
 export type ChatProps = {
   sessionId: string;
@@ -88,6 +89,20 @@ export const Chat: FC<ChatProps> = ({ sessionId }) => {
       },
       sessionId,
     });
+  }
+
+  if (messageQuery.isPending) {
+    return <Loader />;
+  }
+
+  if (messageQuery.isError) {
+    return (
+      <ErrorReport
+        message="Could not load messages"
+        buttonText="Retry"
+        onButtonClick={window.location.reload}
+      />
+    );
   }
 
   return (
