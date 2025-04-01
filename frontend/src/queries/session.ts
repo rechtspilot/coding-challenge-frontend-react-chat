@@ -1,5 +1,6 @@
 import { QueryFunctionContext } from "@tanstack/react-query";
 import { NewSessionResponse } from "../../../shared/types";
+import { fetchWithTimeout } from "../utils/fetch";
 
 export const SessionQueryKey = {
   all: ["sessions"] as const,
@@ -8,7 +9,7 @@ export const SessionQueryKey = {
 
 export const SessionQueryFn = {
   async getAll() {
-    const response = await fetch("/api/sessions");
+    const response = await fetchWithTimeout("/api/sessions");
     if (!response.ok) {
       throw new Error("Sessions not found");
     }
@@ -36,7 +37,7 @@ export const SessionQueryFn = {
 
 export const SessionMutationFn = {
   async create() {
-    const response = await fetch("/api/sessions", {
+    const response = await fetchWithTimeout("/api/sessions", {
       method: "POST",
     });
 
