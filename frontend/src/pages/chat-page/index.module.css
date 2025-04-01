@@ -1,0 +1,14 @@
+.wrap {
+  position: relative;
+  height: 100vh;
+}
+
+.alert {
+  margin-bottom: 16px;
+}
+
+.goHome {
+  position: absolute;
+  top: 8px;
+  left: -8px;
+}
