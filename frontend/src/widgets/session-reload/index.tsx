@@ -1,6 +1,6 @@
 import { Input, Typography } from "antd";
 import styles from "./index.module.css";
-import { SessionQueryFn, SessionQueryKey } from "../../../../queries/session";
+import { SessionQueryFn, SessionQueryKey } from "../../queries/session";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router";
 import { useState } from "react";

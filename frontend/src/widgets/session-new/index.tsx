@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { Button, message } from "antd";
 import { useNavigate } from "react-router";
-import { SessionMutationFn } from "../../../../queries/session";
+import { SessionMutationFn } from "../../queries/session";
 
 export const SessionNew = () => {
   const navigate = useNavigate();
