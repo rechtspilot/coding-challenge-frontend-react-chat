@@ -3,9 +3,10 @@ import { useNavigate, useParams } from "react-router";
 import styles from "./index.module.css";
 import { SessionQueryFn, SessionQueryKey } from "../../queries/session";
 import { CenterWrap } from "../../components/center-wrap";
-import { Alert, Button, Spin } from "antd";
+import { Alert, Button } from "antd";
 import { Chat } from "../../widgets/chat";
 import { GoHome } from "../../widgets/go-home";
+import { Loader } from "../../components/loader";
 
 export const ChatPage = () => {
   const { id } = useParams();
@@ -18,11 +19,7 @@ export const ChatPage = () => {
   });
 
   if (sessionQuery.isLoading) {
-    return (
-      <CenterWrap>
-        <Spin />
-      </CenterWrap>
-    );
+    return <Loader />;
   }
 
   if (sessionQuery.isError || !sessionQuery.data) {

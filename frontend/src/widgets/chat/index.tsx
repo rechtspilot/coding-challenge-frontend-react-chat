@@ -11,10 +11,9 @@ import { LocalMessage, MessageStatus } from "../../types/message";
 import { InputForm } from "../../components/input-form";
 import styles from "./index.module.css";
 import { MessageList } from "../../components/message-list";
-import { Spin } from "antd";
-import { CenterWrap } from "../../components/center-wrap";
 import { updateMessage } from "./utils/update-message";
 import { addMessages } from "./utils/add-messages";
+import { Loader } from "../../components/loader";
 
 export type ChatProps = {
   sessionId: string;
@@ -94,9 +93,7 @@ export const Chat: FC<ChatProps> = ({ sessionId }) => {
   return (
     <div className={styles.wrap}>
       {messageQuery.isPending ? (
-        <CenterWrap>
-          <Spin />
-        </CenterWrap>
+        <Loader />
       ) : (
         <>
           <div className={styles.listWrap}>
