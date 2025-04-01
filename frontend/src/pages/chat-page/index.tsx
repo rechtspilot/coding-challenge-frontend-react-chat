@@ -2,11 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
 import styles from "./index.module.css";
 import { SessionQueryFn, SessionQueryKey } from "../../queries/session";
-import { CenterWrap } from "../../components/center-wrap";
-import { Alert, Button } from "antd";
 import { Chat } from "../../widgets/chat";
 import { GoHome } from "../../widgets/go-home";
 import { Loader } from "../../components/loader";
+import { ErrorReport } from "../../components/error-report";
 
 export const ChatPage = () => {
   const { id } = useParams();
@@ -24,14 +23,11 @@ export const ChatPage = () => {
 
   if (sessionQuery.isError || !sessionQuery.data) {
     return (
-      <CenterWrap>
-        <Alert
-          message="Session not found"
-          type="error"
-          className={styles.alert}
-        />
-        <Button onClick={() => navigate("/")}>Go back</Button>
-      </CenterWrap>
+      <ErrorReport
+        message="Session not found"
+        buttonText="Go back"
+        onButtonClick={() => navigate("/")}
+      />
     );
   }
 
